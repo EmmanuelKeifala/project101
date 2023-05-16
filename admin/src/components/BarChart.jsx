@@ -1,17 +1,36 @@
 /** @format */
 
+import React from "react";
 import { useTheme } from "@mui/material";
 import { ResponsiveBar } from "@nivo/bar";
 import { tokens } from "../theme";
-import { mockBarData as data } from "../data/mockData";
-
-const BarChart = ({ isDashboard = false }) => {
+import { countryNames } from "../data/mockData";
+import useApplicationsStore from "../store";
+const BarChart = () => {
 	const theme = useTheme();
+	const data = useApplicationsStore((state) => state.applications);
 	const colors = tokens(theme.palette.mode);
 
+	const dataReal = data.reduce((result, item) => {
+		const { locationValue } = item;
+		if (result[locationValue]) {
+			result[locationValue] += 1;
+		} else {
+			result[locationValue] = 1;
+		}
+		return result;
+	}, {});
+
+	const transformedData = Object.entries(dataReal).map(
+		([country, totalApplication]) => ({
+			country,
+			totalApplication,
+		}),
+	);
+	console.log(transformedData);
 	return (
 		<ResponsiveBar
-			data={data}
+			data={transformedData}
 			theme={{
 				// added
 				axis: {
@@ -41,36 +60,16 @@ const BarChart = ({ isDashboard = false }) => {
 					},
 				},
 			}}
-			keys={["hot dog", "burger", "sandwich", "kebab", "fries", "donut"]}
+			keys={["totalApplication"]}
 			indexBy="country"
 			margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
 			padding={0.3}
 			valueScale={{ type: "linear" }}
 			indexScale={{ type: "band", round: true }}
 			colors={{ scheme: "nivo" }}
-			defs={[
-				{
-					id: "dots",
-					type: "patternDots",
-					background: "inherit",
-					color: "#38bcb2",
-					size: 4,
-					padding: 1,
-					stagger: true,
-				},
-				{
-					id: "lines",
-					type: "patternLines",
-					background: "inherit",
-					color: "#eed312",
-					rotation: -45,
-					lineWidth: 6,
-					spacing: 10,
-				},
-			]}
 			borderColor={{
 				from: "color",
-				modifiers: [["darker", "1.6"]],
+				modifiers: [["darker", 1.6]],
 			}}
 			axisTop={null}
 			axisRight={null}
@@ -78,7 +77,7 @@ const BarChart = ({ isDashboard = false }) => {
 				tickSize: 5,
 				tickPadding: 5,
 				tickRotation: 0,
-				legend: isDashboard ? undefined : "country", // changed
+				legend: "Country",
 				legendPosition: "middle",
 				legendOffset: 32,
 			}}
@@ -86,7 +85,7 @@ const BarChart = ({ isDashboard = false }) => {
 				tickSize: 5,
 				tickPadding: 5,
 				tickRotation: 0,
-				legend: isDashboard ? undefined : "food", // changed
+				legend: "Total",
 				legendPosition: "middle",
 				legendOffset: -40,
 			}}
@@ -99,7 +98,6 @@ const BarChart = ({ isDashboard = false }) => {
 			}}
 			legends={[
 				{
-					dataFrom: "keys",
 					anchor: "bottom-right",
 					direction: "column",
 					justify: false,
@@ -115,13 +113,20 @@ const BarChart = ({ isDashboard = false }) => {
 						{
 							on: "hover",
 							style: {
-								itemOpacity: 1,
+								itemOpacity: 100,
 							},
 						},
 					],
 				},
 			]}
 			role="application"
+			tooltip={(bar) => (
+				<div style={{ padding: 12, background: "#fff", color: "#000" }}>
+					<strong>{countryNames[bar.indexValue]}</strong>
+					<br />
+					Total: {bar.value}
+				</div>
+			)}
 			barAriaLabel={function (e) {
 				return e.id + ": " + e.formattedValue + " in country: " + e.indexValue;
 			}}

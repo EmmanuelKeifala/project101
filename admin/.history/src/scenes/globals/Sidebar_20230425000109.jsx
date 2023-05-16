@@ -136,15 +136,8 @@ const Sidebar = () => {
 							setSelected={setSelected}
 						/>
 						<Item
-							title="Death Information"
-							to="/death"
-							icon={<ContactsOutlinedIcon />}
-							selected={selected}
-							setSelected={setSelected}
-						/>
-						<Item
-							title="Birth Information"
-							to="/birth"
+							title="Contacts Information"
+							to="/contacts"
 							icon={<ContactsOutlinedIcon />}
 							selected={selected}
 							setSelected={setSelected}

@@ -1,6 +1,6 @@
 /** @format */
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Topbar from "./scenes/globals/Topbar";
 import Sidebar from "./scenes/globals/Sidebar";
@@ -18,25 +18,7 @@ import Geography from "./scenes/geography";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import Calendar from "./scenes/calendar/calendar";
-import useApplicationsStore from "./store";
 function App() {
-	const setDataToStore = useApplicationsStore((state) => state.setApplications);
-
-	useEffect(() => {
-		fetch("http://localhost:3001/api/listings")
-			.then((response) => {
-				if (!response.ok) {
-					throw new Error("Error retrieving listings");
-				}
-				return response.json();
-			})
-			.then((data) => {
-				setDataToStore(data);
-			})
-			.catch((error) => {
-				console.error("Error:", error.message);
-			});
-	}, []);
 	const [theme, colorMode] = useMode();
 	const [isSidebar, setIsSidebar] = useState(true);
 
