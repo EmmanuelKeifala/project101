@@ -18,7 +18,6 @@ import { toast } from "react-toastify";
 import {
 	useAcceptedApplicationInfoStore,
 	useDeclinedApplicationInfoStore,
-	useApplicationsStore,
 } from "../../store";
 
 const Dashboard = () => {
@@ -28,8 +27,6 @@ const Dashboard = () => {
 	const setData2 = useDeclinedApplicationInfoStore(
 		(state) => state.declinedApplication,
 	);
-
-	const totalApplications = useApplicationsStore((state) => state.applications);
 
 	const theme = useTheme();
 	const colors = tokens(theme.palette.mode);
@@ -94,9 +91,10 @@ const Dashboard = () => {
 					alignItems="center"
 					justifyContent="center">
 					<StatBox
-						title={totalApplications.length}
+						title="431,225"
 						subtitle="Total Application"
-						progress={totalApplications.length / 100}
+						progress="0.50"
+						increase="+21%"
 						icon={
 							<People
 								sx={{ color: colors.greenAccent[600], fontSize: "26px" }}

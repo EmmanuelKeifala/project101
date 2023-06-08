@@ -110,7 +110,7 @@ const BirthForm = ({ data }) => {
 								variant="filled"
 								type="text"
 								label="Full Name"
-								// onBlur={handleBlur}
+								onBlur={handleBlur}
 								onChange={() => {}}
 								value={fullname}
 								name="firstName"
@@ -121,31 +121,29 @@ const BirthForm = ({ data }) => {
 								variant="filled"
 								type="text"
 								label="Gender"
-								// onBlur={handleBlur}
+								onBlur={handleBlur}
 								onChange={() => {}}
 								value={gender}
 								name="gender"
 								sx={{ gridColumn: "span 4" }}
 							/>
-							{dob && (
-								<TextField
-									fullWidth
-									variant="filled"
-									type="text"
-									label="Date of birth"
-									// onBlur={handleBlur}
-									onChange={() => {}}
-									value={dob}
-									name="dob"
-									sx={{ gridColumn: "span 4" }}
-								/>
-							)}
+							<TextField
+								fullWidth
+								variant="filled"
+								type="text"
+								label="Date of birth"
+								onBlur={handleBlur}
+								onChange={() => {}}
+								value={dob}
+								name="dob"
+								sx={{ gridColumn: "span 4" }}
+							/>
 							<TextField
 								fullWidth
 								variant="filled"
 								type="text"
 								label="Contact Number"
-								// onBlur={handleBlur}
+								onBlur={handleBlur}
 								onChange={() => {}}
 								value={guardians_phone}
 								name="contact"
@@ -156,7 +154,7 @@ const BirthForm = ({ data }) => {
 								variant="filled"
 								type="text"
 								label="Address 1"
-								// onBlur={handleBlur}
+								onBlur={handleBlur}
 								onChange={() => {}}
 								value={address}
 								name="address1"
@@ -167,7 +165,7 @@ const BirthForm = ({ data }) => {
 								variant="filled"
 								type="text"
 								label="Address 2"
-								// onBlur={handleBlur}
+								onBlur={handleBlur}
 								onChange={() => {}}
 								value={locationValue}
 								name="address2"
@@ -178,7 +176,7 @@ const BirthForm = ({ data }) => {
 								variant="filled"
 								type="text"
 								label="Description"
-								// onBlur={handleBlur}
+								onBlur={handleBlur}
 								onChange={() => {}}
 								value={description}
 								name="description"
@@ -189,7 +187,7 @@ const BirthForm = ({ data }) => {
 								variant="filled"
 								type="text"
 								label="First parent's name"
-								// onBlur={handleBlur}
+								onBlur={handleBlur}
 								onChange={() => {}}
 								value={parent_1}
 								name="parent_1"
@@ -200,7 +198,7 @@ const BirthForm = ({ data }) => {
 								variant="filled"
 								type="text"
 								label="Second parent's name"
-								// onBlur={handleBlur}
+								onBlur={handleBlur}
 								onChange={() => {}}
 								value={parent_2}
 								name="parent_2"
@@ -211,7 +209,7 @@ const BirthForm = ({ data }) => {
 								variant="filled"
 								type="text"
 								label="Reason for Application"
-								// onBlur={handleBlur}
+								onBlur={handleBlur}
 								onChange={() => {}}
 								value={reason}
 								name="reason"

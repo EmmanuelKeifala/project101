@@ -6,7 +6,6 @@ import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import EmailIcon from "@mui/icons-material/Email";
 import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import { People } from "@mui/icons-material";
 import TrafficIcon from "@mui/icons-material/Traffic";
 import Header from "../../components/Header";
 import LineChart from "../../components/LineChart";
@@ -18,7 +17,6 @@ import { toast } from "react-toastify";
 import {
 	useAcceptedApplicationInfoStore,
 	useDeclinedApplicationInfoStore,
-	useApplicationsStore,
 } from "../../store";
 
 const Dashboard = () => {
@@ -29,8 +27,6 @@ const Dashboard = () => {
 		(state) => state.declinedApplication,
 	);
 
-	const totalApplications = useApplicationsStore((state) => state.applications);
-
 	const theme = useTheme();
 	const colors = tokens(theme.palette.mode);
 	const showNewApplicationToast = () => {
@@ -40,7 +36,7 @@ const Dashboard = () => {
 		});
 	};
 	const totalEmail = setData1.length + setData2.length;
-	const progress = totalEmail / 100;
+	const progress = Math.ceil(totalEmail / 100);
 	console.log(progress);
 	return (
 		<Box m="20px">
@@ -94,11 +90,12 @@ const Dashboard = () => {
 					alignItems="center"
 					justifyContent="center">
 					<StatBox
-						title={totalApplications.length}
-						subtitle="Total Application"
-						progress={totalApplications.length / 100}
+						title="431,225"
+						subtitle="Sales Obtained"
+						progress="0.50"
+						increase="+21%"
 						icon={
-							<People
+							<PointOfSaleIcon
 								sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
 							/>
 						}

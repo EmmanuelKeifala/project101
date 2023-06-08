@@ -96,7 +96,7 @@ const Dashboard = () => {
 					<StatBox
 						title={totalApplications.length}
 						subtitle="Total Application"
-						progress={totalApplications.length / 100}
+						progress={totalApplications / 100}
 						icon={
 							<People
 								sx={{ color: colors.greenAccent[600], fontSize: "26px" }}

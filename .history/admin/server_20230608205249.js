@@ -19,7 +19,7 @@ app.get("/api/birth-calls", async (req, res) => {
 	const dbName = "test";
 	const collectionName = "Listing";
 	const query = {
-		$and: [{ category: "Birth" }, { status: "pending" }],
+		$and: [{ category: "Birth" }],
 	};
 
 	try {
