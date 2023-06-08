@@ -1,0 +1,123 @@
+/** @format */
+
+import { Box, Button, TextField } from "@mui/material";
+import { Formik } from "formik";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import Header from "../components/Header";
+const DeathForm = ({ data }) => {
+	const {
+		fullname,
+		gender,
+		guardians_phone,
+		address,
+		category,
+		locationValue,
+		description,
+		reason,
+	} = data;
+	const isNonMobile = useMediaQuery("(min-width:600px)");
+
+	const handleFormSubmit = (values) => {
+		console.log(values);
+	};
+	return (
+		<Box m="20px">
+			<Header title="Death Info " subtitle={`For ${fullname}`} />
+
+			<Formik onSubmit={handleFormSubmit}>
+				{({ values, touched, handleBlur, handleChange, handleSubmit }) => (
+					<form onSubmit={handleSubmit}>
+						<Box
+							display="grid"
+							gap="30px"
+							gridTemplateColumns="repeat(4, minmax(0, 1fr))"
+							sx={{
+								"& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
+							}}>
+							<TextField
+								fullWidth
+								variant="filled"
+								type="text"
+								label="Full Name"
+								onBlur={handleBlur}
+								value={fullname}
+								name="firstName"
+								sx={{ gridColumn: "span 4" }}
+							/>
+							<TextField
+								fullWidth
+								variant="filled"
+								type="text"
+								label="Gender"
+								onBlur={handleBlur}
+								value={gender}
+								name="gender"
+								sx={{ gridColumn: "span 4" }}
+							/>
+							<TextField
+								fullWidth
+								variant="filled"
+								type="text"
+								label="Contact Number"
+								onBlur={handleBlur}
+								value={guardians_phone}
+								name="contact"
+								sx={{ gridColumn: "span 4" }}
+							/>
+							<TextField
+								fullWidth
+								variant="filled"
+								type="text"
+								label="Address 1"
+								onBlur={handleBlur}
+								value={address}
+								name="address1"
+								sx={{ gridColumn: "span 4" }}
+							/>
+							<TextField
+								fullWidth
+								variant="filled"
+								type="text"
+								label="Address 2"
+								onBlur={handleBlur}
+								value={locationValue}
+								name="address2"
+								sx={{ gridColumn: "span 4" }}
+							/>
+							<TextField
+								fullWidth
+								variant="filled"
+								type="text"
+								label="Description"
+								onBlur={handleBlur}
+								value={description}
+								name="description"
+								sx={{ gridColumn: "span 4" }}
+							/>
+							<TextField
+								fullWidth
+								variant="filled"
+								type="text"
+								label="Reason for Application"
+								onBlur={handleBlur}
+								value={reason}
+								name="reason"
+								sx={{ gridColumn: "span 4" }}
+							/>
+						</Box>
+						<Box display="flex" justifyContent="space-between" mt="20px">
+							<Button type="submit" color="secondary" variant="contained">
+								Create New User
+							</Button>
+							<Button type="submit" color="secondary" variant="contained">
+								Create New User
+							</Button>
+						</Box>
+					</form>
+				)}
+			</Formik>
+		</Box>
+	);
+};
+
+export default DeathForm;
