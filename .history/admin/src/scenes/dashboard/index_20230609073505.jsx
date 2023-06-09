@@ -7,8 +7,10 @@ import EmailIcon from "@mui/icons-material/Email";
 import BabyChangingStationIcon from "@mui/icons-material/BabyChangingStation";
 import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied";
 import { People } from "@mui/icons-material";
+import TrafficIcon from "@mui/icons-material/Traffic";
 import Header from "../../components/Header";
-import PieChart from "../../components/PieChart";
+import LineChart from "../../components/LineChart";
+import GeographyChart from "../../components/GeographyChart";
 import BarChart from "../../components/BarChart";
 import StatBox from "../../components/StatBox";
 import ProgressCircle from "../../components/ProgressCircle";
@@ -23,7 +25,6 @@ import { useEffect, useState } from "react";
 
 const Dashboard = () => {
 	const [applicationData, setApplicationData] = useState([]);
-	const [applicationDeath, setApplicationDeath] = useState([]);
 
 	const setData1 = useAcceptedApplicationInfoStore(
 		(state) => state.acceptedApplication,
@@ -34,7 +35,7 @@ const Dashboard = () => {
 
 	const totalApplications = useApplicationsStore((state) => state.applications);
 	useEffect(() => {
-		const birthFetch = () => {
+		const birthFect = () => {
 			fetch("http://localhost:3001/api/birth-app")
 				.then((response) => {
 					if (!response.ok) {
@@ -49,24 +50,6 @@ const Dashboard = () => {
 					console.error("Error:", error.message);
 				});
 		};
-		const deathFetch = () => {
-			fetch("http://localhost:3001/api/death-app")
-				.then((response) => {
-					if (!response.ok) {
-						throw new Error("Error retrieving listings");
-					}
-					return response.json();
-				})
-				.then((data) => {
-					setApplicationDeath(data);
-				})
-				.catch((error) => {
-					console.error("Error:", error.message);
-				});
-		};
-
-		birthFetch();
-		deathFetch();
 	}, []);
 
 	const theme = useTheme();
@@ -166,9 +149,9 @@ const Dashboard = () => {
 					alignItems="center"
 					justifyContent="center">
 					<StatBox
-						title={applicationDeath.length}
-						subtitle="Death"
-						progress={applicationDeath.length / 100}
+						title="1,325,134"
+						subtitle="Traffic Received"
+						progress="0.80"
 						icon={
 							<SentimentDissatisfiedIcon
 								sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
@@ -193,13 +176,13 @@ const Dashboard = () => {
 								variant="h5"
 								fontWeight="600"
 								color={colors.grey[100]}>
-								Total Applications per country
+								Revenue Generated
 							</Typography>
 							<Typography
 								variant="h3"
 								fontWeight="bold"
 								color={colors.greenAccent[500]}>
-								{totalApplications.length}
+								$59,342.32
 							</Typography>
 						</Box>
 						<Box>
@@ -211,12 +194,12 @@ const Dashboard = () => {
 						</Box>
 					</Box>
 					<Box height="250px" m="-20px 0 0 0">
-						<BarChart isDashboard={true} />
+						<LineChart isDashboard={true} />
 					</Box>
 				</Box>
 
 				{/* ROW 3 */}
-				{/* <Box
+				<Box
 					gridColumn="span 4"
 					gridRow="span 2"
 					backgroundColor={colors.primary[400]}
@@ -238,7 +221,7 @@ const Dashboard = () => {
 						</Typography>
 						<Typography>Includes extra misc expenditures and costs</Typography>
 					</Box>
-				</Box> */}
+				</Box>
 				<Box
 					gridColumn="span 4"
 					gridRow="span 2"
@@ -247,13 +230,13 @@ const Dashboard = () => {
 						variant="h5"
 						fontWeight="600"
 						sx={{ padding: "30px 30px 0 30px" }}>
-						Application Volume per Gender
+						Application Volume per Country
 					</Typography>
 					<Box height="250px" mt="-20px">
-						<PieChart isDashboard={true} />
+						<BarChart isDashboard={true} />
 					</Box>
 				</Box>
-				{/* <Box
+				<Box
 					gridColumn="span 4"
 					gridRow="span 2"
 					backgroundColor={colors.primary[400]}
@@ -267,7 +250,7 @@ const Dashboard = () => {
 					<Box height="200px">
 						<GeographyChart isDashboard={true} />
 					</Box>
-				</Box> */}
+				</Box>
 			</Box>
 		</Box>
 	);

@@ -7,8 +7,10 @@ import EmailIcon from "@mui/icons-material/Email";
 import BabyChangingStationIcon from "@mui/icons-material/BabyChangingStation";
 import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied";
 import { People } from "@mui/icons-material";
+import TrafficIcon from "@mui/icons-material/Traffic";
 import Header from "../../components/Header";
-import PieChart from "../../components/PieChart";
+import LineChart from "../../components/LineChart";
+import GeographyChart from "../../components/GeographyChart";
 import BarChart from "../../components/BarChart";
 import StatBox from "../../components/StatBox";
 import ProgressCircle from "../../components/ProgressCircle";
@@ -239,7 +241,7 @@ const Dashboard = () => {
 						<Typography>Includes extra misc expenditures and costs</Typography>
 					</Box>
 				</Box> */}
-				<Box
+				{/* <Box
 					gridColumn="span 4"
 					gridRow="span 2"
 					backgroundColor={colors.primary[400]}>
@@ -247,12 +249,12 @@ const Dashboard = () => {
 						variant="h5"
 						fontWeight="600"
 						sx={{ padding: "30px 30px 0 30px" }}>
-						Application Volume per Gender
+						Application Volume per Country
 					</Typography>
 					<Box height="250px" mt="-20px">
-						<PieChart isDashboard={true} />
+						<BarChart isDashboard={true} />
 					</Box>
-				</Box>
+				</Box> */}
 				{/* <Box
 					gridColumn="span 4"
 					gridRow="span 2"

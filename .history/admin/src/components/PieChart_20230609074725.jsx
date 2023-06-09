@@ -12,21 +12,18 @@ const PieChart = () => {
 	const data = useApplicationsStore((state) => state.applications);
 
 	const genderData = data.reduce((result, { gender }) => {
-		const lowercasedGender = gender.toLowerCase();
-		if (result.hasOwnProperty(lowercasedGender)) {
-			result[lowercasedGender] += 1;
-		} else {
-			result[lowercasedGender] = 1;
-		}
+		result[gender] = (result[gender] || 0) + 1;
 		return result;
 	}, {});
 
-	const mockPieData = Object.keys(genderData).map((gender, index) => ({
-		id: gender,
-		label: gender,
-		value: genderData[gender],
-		color: `hsl(${index * 100}, 70%, 50%)`,
-	}));
+	const mockPieData = Object.entries(genderData).map(
+		([gender, value], index) => ({
+			id: gender,
+			label: gender,
+			value,
+			color: `hsl(${index * 100}, 70%, 50%)`,
+		}),
+	);
 	return (
 		<ResponsivePie
 			data={mockPieData}
@@ -123,18 +120,12 @@ const PieChart = () => {
 					],
 				},
 			]}
-			tooltip={(bar) => {
-				const selectedGender = mockPieData.find((item) => item.id === bar.id);
-				if (selectedGender) {
-					return (
-						<div style={{ padding: 12, background: "#fff", color: "#000" }}>
-							<strong>{selectedGender.label}</strong> <br />
-							Total: {selectedGender.value}
-						</div>
-					);
-				}
-				return null;
-			}}
+			tooltip={(bar) => (
+				<div style={{ padding: 12, background: "#fff", color: "#000" }}>
+					<strong>{mockPieData.map((item) => item.label)}</strong> <br />
+					Total: {mockPieData.map((item) => item.value)}{" "}
+				</div>
+			)}
 		/>
 	);
 };

@@ -6,7 +6,7 @@ import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import EmailIcon from "@mui/icons-material/Email";
 import BabyChangingStationIcon from "@mui/icons-material/BabyChangingStation";
 import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied";
-import { People } from "@mui/icons-material";
+import { People, PieChart } from "@mui/icons-material";
 import Header from "../../components/Header";
 import PieChart from "../../components/PieChart";
 import BarChart from "../../components/BarChart";

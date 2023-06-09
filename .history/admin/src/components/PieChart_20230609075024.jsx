@@ -10,13 +10,12 @@ const PieChart = () => {
 	const theme = useTheme();
 	const colors = tokens(theme.palette.mode);
 	const data = useApplicationsStore((state) => state.applications);
-
+	console.log(data);
 	const genderData = data.reduce((result, { gender }) => {
-		const lowercasedGender = gender.toLowerCase();
-		if (result.hasOwnProperty(lowercasedGender)) {
-			result[lowercasedGender] += 1;
+		if (result.hasOwnProperty(gender)) {
+			result[gender] += 1;
 		} else {
-			result[lowercasedGender] = 1;
+			result[gender] = 1;
 		}
 		return result;
 	}, {});
@@ -123,18 +122,12 @@ const PieChart = () => {
 					],
 				},
 			]}
-			tooltip={(bar) => {
-				const selectedGender = mockPieData.find((item) => item.id === bar.id);
-				if (selectedGender) {
-					return (
-						<div style={{ padding: 12, background: "#fff", color: "#000" }}>
-							<strong>{selectedGender.label}</strong> <br />
-							Total: {selectedGender.value}
-						</div>
-					);
-				}
-				return null;
-			}}
+			tooltip={(bar) => (
+				<div style={{ padding: 12, background: "#fff", color: "#000" }}>
+					<strong>{mockPieData.map((item) => item.label)}</strong> <br />
+					Total: {mockPieData.map((item) => item.value)}{" "}
+				</div>
+			)}
 		/>
 	);
 };

@@ -123,18 +123,12 @@ const PieChart = () => {
 					],
 				},
 			]}
-			tooltip={(bar) => {
-				const selectedGender = mockPieData.find((item) => item.id === bar.id);
-				if (selectedGender) {
-					return (
-						<div style={{ padding: 12, background: "#fff", color: "#000" }}>
-							<strong>{selectedGender.label}</strong> <br />
-							Total: {selectedGender.value}
-						</div>
-					);
-				}
-				return null;
-			}}
+			tooltip={(bar) => (
+				<div style={{ padding: 12, background: "#fff", color: "#000" }}>
+					<strong>{mockPieData.map((item) => item.label)}</strong> <br />
+					Total: {mockPieData.map((item) => item.value)}{" "}
+				</div>
+			)}
 		/>
 	);
 };
