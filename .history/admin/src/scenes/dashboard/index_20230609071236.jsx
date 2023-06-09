@@ -19,7 +19,7 @@ import {
 	useAcceptedApplicationInfoStore,
 	useDeclinedApplicationInfoStore,
 	useApplicationsStore,
-	useBirthInfoStore,
+	useBirthInfoStore
 } from "../../store";
 
 const Dashboard = () => {
@@ -32,6 +32,7 @@ const Dashboard = () => {
 
 	const totalApplications = useApplicationsStore((state) => state.applications);
 	const birth = useBirthInfoStore((state) => state.birthInfo);
+
 
 	const theme = useTheme();
 	const colors = tokens(theme.palette.mode);
@@ -113,9 +114,9 @@ const Dashboard = () => {
 					alignItems="center"
 					justifyContent="center">
 					<StatBox
-						title={birth.length}
+						title={}
 						subtitle="Birth"
-						progress={birth.length / 100}
+						progress="0.30"
 						icon={
 							<PersonAddIcon
 								sx={{ color: colors.greenAccent[600], fontSize: "26px" }}

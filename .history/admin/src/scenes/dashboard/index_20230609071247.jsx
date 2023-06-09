@@ -113,9 +113,9 @@ const Dashboard = () => {
 					alignItems="center"
 					justifyContent="center">
 					<StatBox
-						title={birth.length}
+						title={birth}
 						subtitle="Birth"
-						progress={birth.length / 100}
+						progress="0.30"
 						icon={
 							<PersonAddIcon
 								sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
